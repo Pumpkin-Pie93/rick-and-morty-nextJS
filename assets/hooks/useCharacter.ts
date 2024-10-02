@@ -1,4 +1,4 @@
-import {useEffect, useReducer, useState} from "react";
+import {useEffect, useState} from "react";
 import axios from "axios";
 import {Nullable} from "@/assets/types";
 import {useRouter} from "next/router";
@@ -9,7 +9,7 @@ export const useCharacter = ():Nullable<CharactersType> => {
   const [character, setCharacter] = useState<Nullable<CharactersType>>(null)
 
   useEffect(() => {
-	axios.get(`https:/rickandmortyapi.com/api/character/${router.query.id}`)
+	axios.get(`${process.env.NEXT_PUBLIC_RICK_AND_MORTY_API_URL}/character/${router.query.id}`)
 	  .then(res => setCharacter(res.data))
   }, []);
 
