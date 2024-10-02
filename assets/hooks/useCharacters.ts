@@ -15,8 +15,29 @@ export const useCharacters = ():Nullable<CharactersType[]> => {
 
 
 //types
+// export type CharactersType = {
+//   id:number
+//   name: string
+//   image:string
+// }
+
 export type CharactersType = {
-  id:number
-  name: string
-  image:string
+  id: number;
+  name: string;
+  status: string;
+  species: string;
+  type: string;
+  gender: string;
+  origin: {
+	name: string;
+	url: string;
+  };
+  location: {
+	name: string;
+	url: string;
+  };
+  image: string;
+  episode: string[]; // Массив строк с URL эпизодов
+  url: string;
+  created: string; // Дата в виде строки
 }

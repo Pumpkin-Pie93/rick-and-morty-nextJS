@@ -1,7 +1,8 @@
 import React from 'react';
 import Image from "next/image";
-import {CharactersType} from "@/assets/hooks/useCharacters";
 import s from './characterCard.module.scss'
+import {CharactersType} from "@/assets/hooks/useCharacters";
+import {AccordionList} from "@/components/accordion/Accordion";
 type CharacterType = {
   character: CharactersType
 }
@@ -17,6 +18,15 @@ const CharacterCard = (props:CharacterType) => {
 			 width={300}
 			 height={300}
 	  />
+	  <div>
+		<div>Gender: {character.gender}</div>
+		<div>Species: {character.species}</div>
+		<div>Status:{character.status}</div>
+		<div>Gender:{character.gender}</div>
+		<AccordionList title={'Episode'} list={character.episode}/>
+		<div>Location:{character.location.name}</div>
+		<div>Origin:{character.origin.name}</div>
+	  </div>
 	</div>
   );
 };
