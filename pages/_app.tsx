@@ -1,21 +1,43 @@
 import "@/styles/globals.css";
-import { NextPage } from "next";
+import type { AppProps } from "next/app";
 import { ReactElement, ReactNode } from "react";
+import { getLayout } from "@/components/layout/Layout";
+import {NextPage} from "next";
 
-export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+// Определение типа страницы с возможностью задать свой layout
+export type NextPageWithLayout<P = Record<string, unknown>, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
 };
 
-type AppPropsWithLayout = {
+// Определение типа пропсов с возможностью передавать layout
+type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
-  pageProps?: any; // Лучше специфицировать типы prop-ов, если возможно
 };
 
 export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
-  const getLayout = Component.getLayout ?? ((page) => page);
+  // Используем getLayout, если он есть у страницы, иначе используем стандартный
+  const layoutFunction = Component.getLayout ?? getLayout;
 
-  return getLayout(<Component {...pageProps} />);
+  return layoutFunction(<Component {...pageProps} />);
 }
+
+// import { NextPage } from "next";
+// import { ReactElement, ReactNode } from "react";
+//
+// export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+//   getLayout?: (page: ReactElement) => ReactNode;
+// };
+//
+// type AppPropsWithLayout = {
+//   Component: NextPageWithLayout;
+//   pageProps?: any; // Лучше специфицировать типы prop-ов, если возможно
+// };
+//
+// export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+//   const getLayout = Component.getLayout ?? ((page) => page);
+//
+//   return getLayout(<Component {...pageProps} />);
+// }
 
 
 // import type { AppProps } from "next/app";
