@@ -1,0 +1,15 @@
+.card{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #3a7a16;
+  overflow: hidden;
+  color: white;
+  border-radius: 10px;
+  row-gap: 6px;
+  margin-top: 10px;
+  padding-top: 6px;
+  &img{
+    object-fit: cover;
+  }
+}
