@@ -1,10 +1,10 @@
 import {useCharacters} from "@/assets/hooks/useCharacters";
 import CharacterCard from "@/components/characterCard/CharacterCard";
 import HeadMeta from "@/components/headMeta/HeadMeta";
-import Navbar from "@/components/navbar/Navbar";
+import {getLayout} from "@/components/layout/Layout";
 
 
-export default function Characters() {
+function Characters() {
 
   const characters = useCharacters()
 
@@ -14,16 +14,12 @@ export default function Characters() {
   return (
     <>
      <HeadMeta title={'Characters page'}/>
-        <main style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
-          <Navbar/>
           {characters && characters.map((character)=>(
             <CharacterCard key={character.id} character={character}/>
           ))}
-        </main>
-        <footer>
-          footer
-        </footer>
     </>
   );
 }
 
+Characters.getLayout = getLayout
+export default Characters
